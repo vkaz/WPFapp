@@ -7,11 +7,7 @@
         mc:Ignorable="d"
         Title="Authorization" Height="400" Width="400" Loaded="Window_Loaded_1"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <local:Database1DataSet x:Key="database1DataSet"/>
-        <CollectionViewSource x:Key="tableViewSource" Source="{Binding Table, Source={StaticResource database1DataSet}}"/>
-    </Window.Resources>
-    <Grid DataContext="{StaticResource tableViewSource}" Background="AliceBlue">
+    <Grid Background="AliceBlue">
         <Button Content="Enter" Margin="159,0,138,117" VerticalAlignment="Bottom" Width="95" Click="Button_Click" HorizontalAlignment="Center" Height="24" FontSize="16"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="173,47,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Black"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="159,147,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Black" RenderTransformOrigin="-0.158,0.485"/>

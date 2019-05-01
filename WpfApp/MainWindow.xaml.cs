@@ -25,12 +25,12 @@ public partial class MainWindow : Window
         public MainWindow()
         {
             InitializeComponent();
-            bool result = checkinternet();
+           /* bool result = checkinternet();
             if (result == false)
             {
                 MessageBox.Show("Sorry, we couldn't connect to Internet!");
                 this.Close();
-            }
+            }*/
         }
 
         private bool checkinternet()
@@ -52,7 +52,14 @@ public partial class MainWindow : Window
         }
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            
+            bool result = checkinternet();
+            if (result == false)
+            {
+                MessageBox.Show("Sorry, we couldn't connect to Internet!");
+                this.Close();
+            }
+            else
+                MessageBox.Show("ok");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
