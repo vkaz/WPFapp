@@ -20,20 +20,13 @@ namespace WpfApp
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
    
-public partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-           /* bool result = checkinternet();
-            if (result == false)
-            {
-                MessageBox.Show("Sorry, we couldn't connect to Internet!");
-                this.Close();
-            }*/
         }
-
-        private bool checkinternet()
+        private bool Checkinternet()
         {
             WebRequest request = WebRequest.Create("http://www.google.com");
             WebResponse response;
@@ -52,16 +45,13 @@ public partial class MainWindow : Window
         }
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            bool result = checkinternet();
+            bool result = Checkinternet();
             if (result == false)
             {
                 MessageBox.Show("Sorry, we couldn't connect to Internet!");
-                this.Close();
+               // this.Close();
             }
-            else
-                MessageBox.Show("ok");
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string login = textbox1.Text;
@@ -72,7 +62,7 @@ public partial class MainWindow : Window
                 string tsql = @"SELECT * FROM [Users] WHERE login = '" + login + "'";
                 try
                 {
-                    con.password(tsql);
+                    con.Password(tsql);
                     this.Close();
                 }
                 catch (Exception ex)
@@ -83,8 +73,6 @@ public partial class MainWindow : Window
             else
                 MessageBox.Show("Empty line!!");
         }
-
-      
     }
 }
     

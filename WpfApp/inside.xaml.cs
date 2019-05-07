@@ -39,6 +39,17 @@ namespace WpfApp
             MessageBox.Show(surname, name);
             MessageBox.Show(date, days);
         }
+
+        private void Ex1_s_SelectedDateChanged_1(object sender, SelectionChangedEventArgs e) => t6.Text = ex1_s.Text;
+
+        private void Ex2_s_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => t8.Text = ex2_s.Text;
+
+        private void Ex2_e_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => t9.Text = ex2_e.Text;
+
+        private void Ex3_s_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => t10.Text = ex3_s.Text;
+
+        private void Ex3_e_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => t11.Text = ex3_e.Text;
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => t7.Text = ex1_e.Text;
     }
-    
 }

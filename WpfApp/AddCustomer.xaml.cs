@@ -29,14 +29,10 @@ namespace WpfApp
             if (surname.Text != String.Empty && name.Text != String.Empty && days.Text != String.Empty
                 && date.Text != String.Empty && visa.Text != String.Empty)
             {
-                string str = date.SelectedDate.Value.ToString("dd.MM.yyyy");
-                DateTime dt = DateTime.ParseExact(str, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                str = dt.ToString("MM.dd.yyyy");
-                dt = DateTime.ParseExact(str, "MM.dd.yyyy", CultureInfo.InvariantCulture);
-                MyTable table = new MyTable(surname.Text, name.Text, visa.Text, str, int.Parse(days.Text));
-                string tsql = @"INSERT INTO [Customers] (Surname, Name, Type_of_visa, Fly_in, Days) 
-                    VALUES('" + table.Surname + "', '" + table.Name + "'," +
-                    "'" + table.Type + "', '" + table.Fly + "', '" + table.Days + "')";
+                DateTime ex1 = date.SelectedDate.Value.Date;
+                MyTable table = new MyTable(surname.Text, name.Text, visa.Text, ex1, 
+                    int.Parse(days.Text));
+                string tsql = null;
                 try
                 {
                     DBCon con = new DBCon();

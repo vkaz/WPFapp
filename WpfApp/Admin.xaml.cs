@@ -69,7 +69,7 @@ namespace WpfApp
             try
             {
                 DBCon con = new DBCon();
-                gd.ItemsSource = con.users(tsql);
+                gd.ItemsSource = con.Users(tsql);
             }
             catch (SqlException ex)
             {
@@ -81,6 +81,12 @@ namespace WpfApp
         {
             Window3 window3 = new Window3();
             window3.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ch_us ch_Us = new ch_us();
+            ch_Us.ShowDialog();
         }
     }
 }

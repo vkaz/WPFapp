@@ -39,9 +39,15 @@ namespace WpfApp
                 throw new Exception(ex.Message);
             }
         }
-        public void updateIdentity()
+        public void AddExt(string tsql)
         {
-            string tsql = @"DBCC CHECKIDENT ('[Customers]', RESEED, 1)";
+            DBConnection(tsql);
+            reader.Read();
+            reader.Close();
+        }
+        public void UpdateIdentity()
+        {
+            string tsql = @"DBCC CHECKIDENT ('[Customers]', RESEED, 0)";
             DBConnection(tsql);
             reader.Read();
             reader.Close();
@@ -51,38 +57,43 @@ namespace WpfApp
             DBConnection(tsql);
             reader.Read();
             reader.Close();
-            updateIdentity();
+            UpdateIdentity();
         }
         public void Add(MyTable table, string tsql)
         {
+            tsql = @"INSERT INTO [Customers]
+                    VALUES('" + table.Surname + "', '" + table.Name + "'," +
+                   "'" + table.Type + "', '" + table.FLy + "', '" + table.Days + "'," +
+                   "'" + table.Ex1_start + "', '"+ table.Ex1_end +"'," +
+                   "'" + table.Ex2_start + "', '" + table.Ex2_end + "'," +
+                   "'" + table.Ex3_start + "', '" + table.Ex3_end + "'," +
+                   "'" + table.Ex4_start + "', '" + table.Ex4_end + "'," +
+                   "'" + table.Fly_out + "', '" + table.Num + "')";
             DBConnection(tsql);
             reader.Read();
             reader.Close();
         }
-        public List<MyTable> grid(string tsql)
-        {
+        public List<MyTable> Grid(string tsql)
+        { 
             DBConnection(tsql);
             List<MyTable> data = new List<MyTable>();
             while (reader.Read())
             {
                 data.Add(new MyTable(
                     int.Parse(reader[0].ToString()),
-                    reader[1].ToString(),
-                    reader[2].ToString(),
-                     reader[3].ToString(),
-                     DateTime.Parse(reader[4].ToString()),
+                    reader[1].ToString(), reader[2].ToString(),
+                     reader[3].ToString(), DateTime.Parse(reader[4].ToString()),
                      int.Parse(reader[5].ToString()),
-                     reader[6].ToString(),
-                     reader[7].ToString(),
-                     reader[8].ToString(),
-                     reader[9].ToString(),
-                     reader[10].ToString(),
-                     reader[11].ToString()));
+                     reader[6].ToString(), reader[7].ToString(),
+                     reader[8].ToString(), reader[9].ToString(),
+                     reader[10].ToString(), reader[11].ToString(), 
+                     reader[12].ToString(), reader[13].ToString(),
+                     reader[14].ToString(), int.Parse(reader[15].ToString())));
             }
             reader.Close();
             return data;
         }
-        public List<Users> users(string tsql)
+        public List<Users> Users(string tsql)
         {
             DBConnection(tsql);
             List<Users> data = new List<Users>();
@@ -94,7 +105,7 @@ namespace WpfApp
             reader.Close();
             return data;
         }
-        public void password(string tsql)
+        public void Password(string tsql)
         {
             DBConnection(tsql);
             bool ans;

@@ -9,7 +9,7 @@ namespace WpfApp
 {
     public class HashPass
     {
-        public static string HashPassword(string password)
+        private static string HashPassword(string password)
         {
             byte[] salt;
             byte[] buffer2;
@@ -28,7 +28,7 @@ namespace WpfApp
             return Convert.ToBase64String(dst);
         }
 
-        public static bool ByteArraysEqual(byte[] b1, byte[] b2)
+        private static bool ByteArraysEqual(byte[] b1, byte[] b2)
         {
             if (b1 == b2) return true;
             if (b1 == null || b2 == null) return false;
@@ -40,7 +40,7 @@ namespace WpfApp
             return true;
         }
 
-        public static bool VerifyHashedPassword(string hashedPassword, string password)
+        internal static bool VerifyHashedPassword(string hashedPassword, string password)
         {
             byte[] buffer4;
             if (hashedPassword == null)

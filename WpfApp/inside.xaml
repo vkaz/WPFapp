@@ -8,17 +8,23 @@
         Title="Information about customer" Height="650" Width="400"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox Name="t1" HorizontalAlignment="Left" Height="34" Margin="102,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t2" HorizontalAlignment="Left" Height="46" Margin="102,104,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.481,-0.629"/>
-        <TextBox Name="t3" HorizontalAlignment="Left" Height="28" Margin="102,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t4" HorizontalAlignment="Left" Height="34" Margin="102,188,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t5" HorizontalAlignment="Left" Height="55" Margin="102,222,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t6" HorizontalAlignment="Left" Height="43" Margin="102,282,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.481,-0.455"/>
-        <TextBox Name="t7" HorizontalAlignment="Left" Height="26" Margin="102,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t8" HorizontalAlignment="Left" Height="29" Margin="102,361,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.517,-2.158"/>
-        <TextBox Name="t9" HorizontalAlignment="Left" Height="31" Margin="102,395,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="t10" HorizontalAlignment="Left" Height="26" Margin="105,431,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
-        <TextBox Name="t11" HorizontalAlignment="Left" Height="37" Margin="102,486,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t1" HorizontalAlignment="Left" Height="24" Margin="102,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t2" HorizontalAlignment="Left" Height="24" Margin="102,104,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.481,-0.629"/>
+        <TextBox Name="t3" HorizontalAlignment="Left" Height="24" Margin="102,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t4" HorizontalAlignment="Left" Height="24" Margin="102,188,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t5" HorizontalAlignment="Left" Height="24" Margin="102,222,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t6" HorizontalAlignment="Left" Height="24" Margin="102,282,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.481,-0.455"/>
+        <TextBox Name="t7" HorizontalAlignment="Left" Height="24" Margin="102,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t8" HorizontalAlignment="Left" Height="24" Margin="102,361,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.517,-2.158"/>
+        <TextBox Name="t9" HorizontalAlignment="Left" Height="24" Margin="102,395,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="t10" HorizontalAlignment="Left" Height="24" Margin="105,431,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <TextBox Name="t11" HorizontalAlignment="Left" Height="24" Margin="102,486,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <DatePicker Name="ex1_s" HorizontalAlignment="Left" Height="24" Margin="268,282,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="Ex1_s_SelectedDateChanged_1" RenderTransformOrigin="-0.618,0.438"/>
+        <DatePicker Name="ex1_e" HorizontalAlignment="Left" Height="24" Margin="268,330,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+        <DatePicker Name="ex2_s" HorizontalAlignment="Left" Height="24" Margin="268,361,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="Ex2_s_SelectedDateChanged"/>
+        <DatePicker Name="ex2_e" HorizontalAlignment="Left" Height="24" Margin="268,395,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="Ex2_e_SelectedDateChanged"/>
+        <DatePicker Name="ex3_s" HorizontalAlignment="Left" Height="24" Margin="268,431,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="Ex3_s_SelectedDateChanged"/>
+        <DatePicker Name="ex3_e" HorizontalAlignment="Left" Height="24" Margin="268,486,0,0" VerticalAlignment="Top" Width="34" SelectedDateChanged="Ex3_e_SelectedDateChanged"/>
 
     </Grid>
 </Window>

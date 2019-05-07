@@ -19,7 +19,7 @@
         <Label Content="Type of visa" HorizontalAlignment="Left" Height="33" Margin="158,190,0,0" VerticalAlignment="Top" Width="110" FontSize="18"/>
         <Label Content="Fly in" HorizontalAlignment="Left" Height="35" Margin="158,252,0,0" VerticalAlignment="Top" Width="69" FontSize="18"/>
         <Label Content="Days" HorizontalAlignment="Left" Height="40" Margin="158,327,0,0" VerticalAlignment="Top" Width="69" FontSize="18"/>
-        <DatePicker Name="date" HorizontalAlignment="Left" Height="35" Margin="50,287,0,0" VerticalAlignment="Top" Width="300" FontSize="18" SelectedDate="{Binding Path=DateOfBirth,StringFormat='MM/dd/yyy'}"/>
+        <DatePicker Name="date" HorizontalAlignment="Left" Height="35" Margin="50,287,0,0" VerticalAlignment="Top" Width="300" FontSize="18" SelectedDate="{Binding Path=DateOfBirth,StringFormat='MM.dd.yyy'}"/>
 
     </Grid>
 </Window>

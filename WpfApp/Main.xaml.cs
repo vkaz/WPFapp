@@ -17,15 +17,13 @@ namespace WpfApp
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
         }
- 
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             string tsql = @"SELECT * FROM [Customers]";
             try
             {
                 DBCon con = new DBCon();
-                List<MyTable> data = con.grid(tsql);
+                List<MyTable> data = con.Grid(tsql);
                 grid.ItemsSource = data;
             }
             catch (SqlException ex)
@@ -38,6 +36,7 @@ namespace WpfApp
         {
             Window1 win = new Window1();
             win.ShowDialog();
+            Grid_Loaded(sender, e);
         }
         
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,51 +61,78 @@ namespace WpfApp
                 DBCon con = new DBCon();
                 con.Delete(tsql);
                 MessageBox.Show("Customer deleted");
-
+                Grid_Loaded(sender, e);
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void B1_Click(object sender, RoutedEventArgs e)
-        {
-            inside ins = new inside();
-            MyTable t = grid.SelectedItem as MyTable;
+        DataGridCell targetCell1;
+        DataGridRow targetRow;
 
-             string surname = Convert.ToString(t.Surname.Trim());
-             string name = Convert.ToString(t.Name.Trim());
-             string days = Convert.ToString(t.Days);
-             string date = Convert.ToString(t.FLy);
-             string type = Convert.ToString(t.Type.Trim());
-             string ex1s = Convert.ToString(t.Ex1_start);
-             string ex1e = Convert.ToString(t.Ex1_end);
-             string ex2s = Convert.ToString(t.Ex2_start);
-             string ex2e = Convert.ToString(t.Ex2_end);
-             string ex3s = Convert.ToString(t.Ex3_start);
-             string ex3e = Convert.ToString(t.Ex3_end);
-             ins.t1.Text = surname;
-             ins.t2.Text = name;
-             ins.t3.Text = date;
-             ins.t4.Text = days;
-             ins.t5.Text = type;
-             ins.t6.Text = ex1s;
-             ins.t7.Text = ex1e;
-             ins.t8.Text = ex2s;
-             ins.t9.Text = ex2e;
-             ins.t10.Text = ex3s;
-             ins.t11.Text = ex3e;
-             ins.ShowDialog();
-             if (ins.t1.Text != surname || ins.t2.Text != name || ins.t3.Text != date || ins.t4.Text != days ||
-                 ins.t5.Text != type || ins.t6.Text != ex1s || ins.t7.Text != ex1e || ins.t8.Text != ex2s ||
-                 ins.t9.Text != ex2e || ins.t10.Text != ex3s || ins.t11.Text != ex3e)
-                 MessageBox.Show("aaaa");
+        private void Grid_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var hit = VisualTreeHelper.HitTest((Visual)sender, e.GetPosition((IInputElement)sender));
+            DependencyObject cell = VisualTreeHelper.GetParent(hit.VisualHit);
+            while (cell != null && !(cell is DataGridCell)) cell = VisualTreeHelper.GetParent(cell);
+            DataGridCell targetCell = cell as DataGridCell;
+            if (targetCell != null)
+            {
+                targetCell1 = targetCell;
+            }
+            DependencyObject row = VisualTreeHelper.GetParent(hit.VisualHit);
+            while (row != null && !(row is DataGridRow))
+                row = VisualTreeHelper.GetParent(row);
+            DataGridRow targetCell2 = row as DataGridRow;
+            if (targetCell2 != null)
+            {
+                targetRow = targetCell2;
+            }
+            //MessageBox.Show(targetCell2.ToString());
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ch_us ch_Us = new ch_us();
-            ch_Us.ShowDialog();
+            //targetCell1.Background = new SolidColorBrush(Colors.Red);
+            //targetRow.Background = new SolidColorBrush(Colors.Red);
+            MyTable table = targetRow.Item as MyTable;
+            int i = table.Num + 1;
+            if (table.Num < 5)
+            {
+                string tsql = @"UPDATE [Customers] SET num_ext='" + i + "' WHERE Id='" + table.Id + "'";
+                try
+                {
+                    DBCon con = new DBCon();
+                    con.AddExt(tsql);
+                    MessageBox.Show("update");
+                    Grid_Loaded(sender, e);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+                MessageBox.Show("Already use all ext");
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // targetCell1.Background = new SolidColorBrush(Colors.AliceBlue);
+            MyTable table = targetRow.Item as MyTable;
+            string tsql = @"UPDATE [Customers] SET num_ext='0' WHERE Id='" + table.Id + "'";
+            try
+            {
+                DBCon con = new DBCon();
+                con.AddExt(tsql);
+                MessageBox.Show("update");
+                Grid_Loaded(sender, e);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
