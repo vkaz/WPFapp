@@ -5,21 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Window3" Height="650" Width="500">
+        Title="Window3" Height="450" Width="300">
     <Grid>
-        <Button Content="Change password" HorizontalAlignment="Left" Margin="10,589,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <DataGrid Name="gd" HorizontalAlignment="Left" Height="551" Margin="10,10,0,0" VerticalAlignment="Top" Width="289" Loaded="Gd_Loaded">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="btn" Content="Show" Click="Btn_Click" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Button" HorizontalAlignment="Right" Height="25" Margin="0,10,0,0" VerticalAlignment="Top" Width="49" Click="Button_Click"/>
+        <Label Content="Add Users" HorizontalAlignment="Center" Margin="60,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.897,1.739" FontSize="22" FontFamily="Stencil" Width="194"/>
+        <Button Content="Change password" HorizontalAlignment="Left" Margin="217,386,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Label Content="Login" HorizontalAlignment="Left" Height="28" Margin="92,40,0,0" VerticalAlignment="Top" Width="74" FontSize="14" FontWeight="Bold"/>
+        <TextBox Name="t1" Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="27" Margin="92,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="93"/>
+        <Label Content="Password" HorizontalAlignment="Left" Height="28" Margin="92,120,0,0" VerticalAlignment="Top" Width="74" FontSize="14" FontWeight="Bold"/>
+        <TextBox Name="t2" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="27" Margin="92,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="93"/>
+        <Label Content="If it's Admin write 1 else 0" HorizontalAlignment="Left" Height="28" Margin="64,202,0,0" VerticalAlignment="Top" Width="180" FontSize="14" FontWeight="Bold"/>
+        <TextBox Name="t3" Text="{Binding Admin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="27" Margin="92,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
+        <Button Content="Add" Command="{Binding AddUser}" HorizontalAlignment="Left" Height="37" Margin="104,299,0,0" VerticalAlignment="Top" Width="81"/>
     </Grid>
 </Window>

@@ -9,7 +9,7 @@ namespace WpfApp
 {
     public class HashPass
     {
-        private static string HashPassword(string password)
+        internal static string HashPassword(string password)
         {
             byte[] salt;
             byte[] buffer2;

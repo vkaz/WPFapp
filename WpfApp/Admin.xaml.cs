@@ -25,6 +25,7 @@ namespace WpfApp
         public Window3()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -61,32 +62,6 @@ namespace WpfApp
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void Gd_Loaded(object sender, RoutedEventArgs e)
-        {
-            string tsql = @"SELECT * FROM [Users]";
-            try
-            {
-                DBCon con = new DBCon();
-                gd.ItemsSource = con.Users(tsql);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void Btn_Click(object sender, RoutedEventArgs e)
-        {
-            Window3 window3 = new Window3();
-            window3.ShowDialog();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ch_us ch_Us = new ch_us();
-            ch_Us.ShowDialog();
         }
     }
 }

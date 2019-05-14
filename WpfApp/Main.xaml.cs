@@ -16,57 +16,11 @@ namespace WpfApp
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
+            DataContext = new MyTable();
         }
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            string tsql = @"SELECT * FROM [Customers]";
-            try
-            {
-                DBCon con = new DBCon();
-                List<MyTable> data = con.Grid(tsql);
-                grid.ItemsSource = data;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void Btn1_Click(object sender, RoutedEventArgs e)
-        {
-            Window1 win = new Window1();
-            win.ShowDialog();
-            Grid_Loaded(sender, e);
-        }
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window3 window3 = new Window3();
-            window3.ShowDialog();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Grid_Loaded(sender, e);
-        }
-
         private void B2_Click(object sender, RoutedEventArgs e)
         {
-            MyTable t = grid.SelectedItem as MyTable;
-            string surname = Convert.ToString(t.Surname.Trim());
-            string name = Convert.ToString(t.Name.Trim());
-            string tsql = @"DELETE FROM [Customers] WHERE Surname='" + surname + "' AND Name='"+name+"'";
-            try
-            {
-                DBCon con = new DBCon();
-                con.Delete(tsql);
-                MessageBox.Show("Customer deleted");
-                Grid_Loaded(sender, e);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            DBCon.Delete(grid.SelectedItem); 
         }
         DataGridCell targetCell1;
         DataGridRow targetRow;
@@ -96,43 +50,15 @@ namespace WpfApp
         {
             //targetCell1.Background = new SolidColorBrush(Colors.Red);
             //targetRow.Background = new SolidColorBrush(Colors.Red);
-            MyTable table = targetRow.Item as MyTable;
-            int i = table.Num + 1;
-            if (table.Num < 5)
-            {
-                string tsql = @"UPDATE [Customers] SET num_ext='" + i + "' WHERE Id='" + table.Id + "'";
-                try
-                {
-                    DBCon con = new DBCon();
-                    con.AddExt(tsql);
-                    MessageBox.Show("update");
-                    Grid_Loaded(sender, e);
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
-            else
-                MessageBox.Show("Already use all ext");
+            DBCon.AddItemExt(targetRow.Item as MyTable);
+           
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             // targetCell1.Background = new SolidColorBrush(Colors.AliceBlue);
-            MyTable table = targetRow.Item as MyTable;
-            string tsql = @"UPDATE [Customers] SET num_ext='0' WHERE Id='" + table.Id + "'";
-            try
-            {
-                DBCon con = new DBCon();
-                con.AddExt(tsql);
-                MessageBox.Show("update");
-                Grid_Loaded(sender, e);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            DBCon.DelItemExt(targetRow.Item as MyTable);
+           
         }
     }
 }

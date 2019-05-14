@@ -11,8 +11,8 @@
         </LinearGradientBrush>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource GrayBlueGradientBrush}" />
-            <Setter Property="Width" Value="80" />
-            <Setter Property="Margin" Value="10" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Margin" Value="5" />
         </Style>
     </Application.Resources>
 </Application>

@@ -22,17 +22,7 @@ namespace WpfApp
         public ch_us()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            WpfApp.localDBDataSet localDBDataSet = ((WpfApp.localDBDataSet)(this.FindResource("localDBDataSet")));
-            // Загрузить данные в таблицу Users. Можно изменить этот код как требуется.
-            WpfApp.localDBDataSetTableAdapters.UsersTableAdapter localDBDataSetUsersTableAdapter = new WpfApp.localDBDataSetTableAdapters.UsersTableAdapter();
-            localDBDataSetUsersTableAdapter.Fill(localDBDataSet.Users);
-            System.Windows.Data.CollectionViewSource usersViewSource = ((CollectionViewSource)(this.FindResource("usersViewSource")));
-            usersViewSource.View.MoveCurrentToFirst();
+            DataContext = new AdminViewModel();
         }
     }
 }
