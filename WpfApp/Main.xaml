@@ -6,16 +6,19 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="Customers" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MyTable/>
+    </Window.DataContext>
     <Grid  Background="AliceBlue">
         <DataGrid Name="grid" AutoGenerateColumns="False" Margin="16,0,84,0" 
-                  HorizontalAlignment="Left" MouseRightButtonUp="Grid_MouseRightButtonUp" ItemsSource="{Binding Table}">
+                  HorizontalAlignment="Left" ItemsSource="{Binding Table}"
+                  SelectedItem="{Binding SelectedRow}">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding ColorSet}"/>
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-    
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
@@ -88,8 +91,9 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Add ext" Click="MenuItem_Click"></MenuItem>
-                    <MenuItem Header="del" Click="MenuItem_Click_1"></MenuItem>
+                    <MenuItem Header="Add ext" Command="{Binding Add_click}"></MenuItem>
+                    <MenuItem Header="Reset ext" Command="{Binding Reset_click}"></MenuItem>
+                    <MenuItem Header="Delete user" Command="{Binding Del_click}"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

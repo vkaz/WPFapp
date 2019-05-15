@@ -25,9 +25,7 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
         }
-       
         private bool Checkinternet()
         {
             WebRequest request = WebRequest.Create("http://www.google.com");

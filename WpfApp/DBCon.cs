@@ -94,12 +94,11 @@ namespace WpfApp
                 MessageBox.Show(ex.ToString());
             }
         }
-        public static void Delete(object i)
+        public static void Delete(MyTable t)
         {
-            MyTable t = i as MyTable;
             string surname = Convert.ToString(t.Surname.Trim());
             string name = Convert.ToString(t.Name.Trim());
-            string tsql = @"DELETE FROM [Customers] WHERE Surname='" + surname + "' AND Name='" + name + "'";
+            string tsql = @"DELETE FROM [Customers] WHERE Surname='" + surname + "' AND Name='" + name + "' AND Id='" + t.Id + "'";
             try
             {
                 DBConnection(tsql);

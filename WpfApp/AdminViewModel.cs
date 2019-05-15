@@ -38,7 +38,7 @@ namespace WpfApp
                 return delUser ??
                     (delUser = new RelayCommand(obj =>
                     {
-                        MessageBox.Show(this.Name);
+                        //MessageBox.Show(this.Name);
                     }));
             }
         }

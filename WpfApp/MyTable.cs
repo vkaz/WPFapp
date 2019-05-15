@@ -16,7 +16,7 @@ using System.Windows.Input;
 namespace WpfApp
 {
 
-    public class MyTable : INotifyPropertyChanged
+    public class MyTable : Property
     {
         int id;
         string surname;
@@ -86,9 +86,47 @@ namespace WpfApp
                       }));
             }
         }
-
+        public MyTable SelectedRow { get; set; }
+        private RelayCommand add_click;
+        public RelayCommand Add_click
+        {
+            get
+            {
+                return add_click ??
+                    (add_click = new RelayCommand(obj =>
+                    {
+                        DBCon.AddItemExt(SelectedRow);
+                    }));
+            }
+        }
+        private RelayCommand reset_click;
+        public RelayCommand Reset_click
+        {
+            get
+            {
+                return reset_click ??
+                    (reset_click = new RelayCommand(obj =>
+                    {
+                        DBCon.DelItemExt(SelectedRow);
+                    }));
+            }
+        }
+        private RelayCommand delete_click;
+        public RelayCommand Del_click
+        {
+            get
+            {
+                return delete_click ??
+                    (delete_click = new RelayCommand(obj =>
+                    {
+                        DBCon.Delete(SelectedRow);
+                    }));
+            }
+        }
         public MyTable()
         {
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+                return;
             Table = DBCon.Grid();
         }
         public MyTable(string Surname, string Name, string Type, DateTime fly, int days)
@@ -432,12 +470,6 @@ namespace WpfApp
 
                     }));
             }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
         private string userName;
         public string UserName

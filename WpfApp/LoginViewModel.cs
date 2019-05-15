@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WpfApp
 {
-    public class LoginViewModel : MyTable
-    {
-        private bool _isAuthenticated;
-        public bool isAuthenticated
-        {
-            get { return _isAuthenticated; }
-            set
-            {
-                if (value != _isAuthenticated)
-                {
-                    _isAuthenticated = value;
-                    OnPropertyChanged("isAuthenticated");
-                }
-            }
-        }
+    public class LoginViewModel : Property
+    { 
         private string _username;
-        public new string UserName
+        public string UserName
         {
             get { return _username; }
             set
@@ -35,34 +26,14 @@ namespace WpfApp
                 OnPropertyChanged("UserName");
             }
         }
-        private string _password;
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                _password = value;
-                OnPropertyChanged("Password");
-            }
-        }
         private int _admin;
-        public new int Admin
+        public int Admin
         {
             get { return _admin; }
             set
             {
                 _admin = value;
                 OnPropertyChanged("Admin");
-            }
-        }
-        private RelayCommand login;
-        public ICommand LoginCommand
-        {
-            get { return login ??
-                      (login = new RelayCommand(obj =>
-                      {
-                          DBCon.Password(_username.Trim(), _password.Trim());
-                      }));
             }
         }
         private RelayCommand adduser;
@@ -73,25 +44,52 @@ namespace WpfApp
                 return adduser ??
                     (adduser = new RelayCommand(obj =>
                     {
-                        if (_username != null && _password != null && (_admin == 0 || _admin == 1))
+                        if (_username != null && Password != null && (_admin == 0 || _admin == 1))
                         {
-                            string pass = HashPass.HashPassword(_password.Trim());
-                            DBCon con = new DBCon();
-                            string tsql = @"INSERT INTO [Users]
-                    VALUES('" + _username.Trim() + "', '" + pass + "', '" + _admin + "')";
-                            con.AddExt(tsql);
+                            /*  string pass = HashPass.HashPassword(_pass.Trim());
+                              DBCon con = new DBCon();
+                              string tsql = @"INSERT INTO [Users]
+                      VALUES('" + _username.Trim() + "', '" + pass + "', '" + _admin + "')";
+                              con.AddExt(tsql);*/
                         }
                     }));
             }
         }
-       
-        public void Login()
+        private RelayCommand login;
+        public ICommand LoginCommand
         {
-            //TODO check username and password vs database here.
-            //If using membershipprovider then just call Membership.ValidateUser(UserName, Password)
-            if (!String.IsNullOrEmpty(UserName) && !String.IsNullOrEmpty(Password))
-                isAuthenticated = true;
+            get
+            {
+                return login ??
+                    (login = new RelayCommand(obj =>
+                    {
+                        if (_username != null && Password.Trim() != null && (_admin == 0 || _admin == 1))
+                        {
+                            DBCon.Password(_username, Password);
+                        }
+                    }));
+            }
         }
-        
+        public ICommand PasswordChangedCommand
+        {
+            get
+            {
+                return new RelayCommand(ExecChangePassword);
+            }
+        }
+
+        private string yourPassword;
+        public string Password
+        {
+            private get { return yourPassword; }
+            set
+            {
+                yourPassword = value;
+            }
+        }
+        private void ExecChangePassword(object obj)
+        {
+            yourPassword = ((System.Windows.Controls.PasswordBox)obj).Password;
+        }
     }
 }
