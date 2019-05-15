@@ -5,12 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Customers" Height="450" Width="800">
+        Title="Customers"
+        Width="1080"
+        Height="720"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.DataContext>
         <local:MyTable/>
     </Window.DataContext>
     <Grid  Background="AliceBlue">
-        <DataGrid Name="grid" AutoGenerateColumns="False" Margin="16,0,84,0" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" Name="grid" AutoGenerateColumns="False" Margin="16,0,84,0" 
                   HorizontalAlignment="Left" ItemsSource="{Binding Table}"
                   SelectedItem="{Binding SelectedRow}">
             <DataGrid.RowStyle>
@@ -94,11 +101,15 @@
                     <MenuItem Header="Add ext" Command="{Binding Add_click}"></MenuItem>
                     <MenuItem Header="Reset ext" Command="{Binding Reset_click}"></MenuItem>
                     <MenuItem Header="Delete user" Command="{Binding Del_click}"></MenuItem>
+                    <MenuItem Header="Update table" Command="{Binding Update_click}"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="btn1" Content="Add customer" Margin="0,3,0,0" Width="84" Command="{Binding AddCustomer}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-        <Button x:Name="btn2" Content="Admin panel" HorizontalAlignment="Right" Height="21" Margin="0,28,0,0" VerticalAlignment="Top" Width="84" Command="{Binding Admin}"/>
-        <Button x:Name="btn3" Content="Update data" VerticalAlignment="Top" HorizontalAlignment="Right" Height="27" Margin="0,54,0,0" Width="84" Command="{Binding Update}"/>
+        <Button Grid.Column="1" x:Name="btn1" Content="Add customer" Margin="0,3,0,0" Width="84" 
+                Command="{Binding AddCustomer}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Button Grid.Column="1" x:Name="btn2" Content="Admin panel" HorizontalAlignment="Right" Height="21"
+                Margin="0,28,0,0" VerticalAlignment="Top" Width="84" Command="{Binding Admin}"/>
+        <Button Grid.Column="1" x:Name="btn3" Content="Update data" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                Height="27" Margin="0,54,0,0" Width="84" Command="{Binding Update}"/>
     </Grid>
 </Window>

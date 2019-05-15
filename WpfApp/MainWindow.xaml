@@ -7,28 +7,35 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Authorization" Height="400" Width="400"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Window.DataContext>
         <local:LoginViewModel/>
     </Window.DataContext>
     <Grid Background="AliceBlue">
-        <Label Content="Login" HorizontalAlignment="Left" Margin="173,47,0,0" VerticalAlignment="Top" FontSize="18" 
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Login" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="18" 
                FontFamily="Segoe UI Black"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="159,147,0,0" VerticalAlignment="Top" FontSize="18" 
-               FontFamily="Segoe UI Black" RenderTransformOrigin="-0.158,0.485"/>
-        <TextBox x:Name="textbox1" HorizontalAlignment="Left" Height="23" Margin="142,96,0,0"
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding UserName, Mode=TwoWay, 
-            UpdateSourceTrigger=PropertyChanged}"/>
-        <PasswordBox x:Name="UserPassword" HorizontalAlignment="Left" Height="20" Margin="142,186,0,0" VerticalAlignment="Top"
-                     Width="120" PasswordChar="*">
+        <Label Grid.Row="1" Content="Password" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="18" 
+               FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textbox1" FontSize="16" HorizontalAlignment="Center" Height="25" Margin="0,0,0,0" HorizontalContentAlignment="Center"
+                 TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="{Binding UserName, Mode=TwoWay, 
+            UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <PasswordBox Grid.Row="1" x:Name="UserPassword" HorizontalAlignment="Center" Height="25" Margin="0,0,0,0" VerticalAlignment="Center"
+                     Width="120" PasswordChar="*" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     FontWeight="Bold" FontSize="16">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PasswordChanged" >
                     <i:InvokeCommandAction Command="{Binding PasswordChangedCommand }"  CommandParameter="{Binding ElementName=UserPassword,  Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </PasswordBox>
-        <Button Content="Enter" Margin="159,0,138,117" VerticalAlignment="Bottom" Width="95" 
+        <Button Grid.Row="2" Content="Enter" Margin="0,0,0,0" VerticalAlignment="Top" Width="95" 
                 Command="{Binding LoginCommand}"
-                HorizontalAlignment="Center" Height="24" FontSize="16"/>
+                HorizontalAlignment="Center" Height="24" FontSize="16" RenderTransformOrigin="0.447,2.125"/>
     </Grid>
 </Window>

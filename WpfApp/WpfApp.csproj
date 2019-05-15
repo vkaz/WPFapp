@@ -125,7 +125,6 @@
       <DependentUpon>DBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="HashPass.cs" />
-    <Compile Include="IHavePassword.cs" />
     <Compile Include="inside.xaml.cs">
       <DependentUpon>inside.xaml</DependentUpon>
     </Compile>

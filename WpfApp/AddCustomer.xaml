@@ -8,18 +8,30 @@
         Title="Window1" Height="650" Width="400"
         WindowStartupLocation="CenterScreen">
     <Grid Background="AliceBlue" Margin="0,0,0,-131">
-        <Button Content="ADD" HorizontalAlignment="Left" Margin="134,444,0,0" VerticalAlignment="Top" Width="134" Command="{Binding AddCus}" Height="36"/>
-        <Label Content="Add Customer" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.897,1.739" FontSize="22" FontFamily="Stencil" Width="194"/>
-        <TextBox Name="surname" Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="50,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <TextBox Name="name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="27" Margin="50,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.49,-0.065"/>
-        <TextBox Name="visa" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="24" Margin="50,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <TextBox Name="days" Text="{Binding Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="32" Margin="50,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Height="41" Margin="158,46,0,0" VerticalAlignment="Top" Width="86" FontSize="18"/>
-        <Label Content="Name" HorizontalAlignment="Left" Height="41" Margin="158,117,0,0" VerticalAlignment="Top" Width="69" FontSize="18"/>
-        <Label Content="Type of visa" HorizontalAlignment="Left" Height="33" Margin="158,190,0,0" VerticalAlignment="Top" Width="110" FontSize="18"/>
-        <Label Content="Fly in" HorizontalAlignment="Left" Height="35" Margin="158,252,0,0" VerticalAlignment="Top" Width="69" FontSize="18"/>
-        <Label Content="Days" HorizontalAlignment="Left" Height="40" Margin="158,327,0,0" VerticalAlignment="Top" Width="69" FontSize="18"/>
-        <DatePicker Name="date" Text="{Binding FLy, UpdateSourceTrigger=PropertyChanged, StringFormat='MM.dd.yyy'}" HorizontalAlignment="Left" Height="35" Margin="50,287,0,0" VerticalAlignment="Top" Width="300" FontSize="18"/>
+        <Button Content="ADD" HorizontalAlignment="Left" Margin="134,444,0,0" VerticalAlignment="Top" Width="134"
+                Command="{Binding AddCus}" Height="36"/>
+        <Label Content="Add Customer" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"
+               RenderTransformOrigin="-2.897,1.739" FontSize="22" FontFamily="Stencil" Width="194"/>
+        <TextBox Name="surname" Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Left" Height="30" Margin="50,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox Name="name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"
+                 Height="27" Margin="50,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.49,-0.065"/>
+        <TextBox Name="visa" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"
+                 Height="24" Margin="50,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox Name="days" Text="{Binding Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"
+                 Height="32" Margin="50,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <Label Content="Surname" HorizontalAlignment="Left" Height="41" Margin="158,46,0,0" VerticalAlignment="Top" Width="86"
+               FontSize="18"/>
+        <Label Content="Name" HorizontalAlignment="Left" Height="41" Margin="158,117,0,0" VerticalAlignment="Top" Width="69"
+               FontSize="18"/>
+        <Label Content="Type of visa" HorizontalAlignment="Left" Height="33" Margin="158,190,0,0" VerticalAlignment="Top"
+               Width="110" FontSize="18"/>
+        <Label Content="Fly in" HorizontalAlignment="Left" Height="35" Margin="158,252,0,0" VerticalAlignment="Top" Width="69"
+               FontSize="18"/>
+        <Label Content="Days" HorizontalAlignment="Left" Height="40" Margin="158,327,0,0" VerticalAlignment="Top" Width="69"
+               FontSize="18"/>
+        <DatePicker Name="date" Text="{Binding FLy, UpdateSourceTrigger=PropertyChanged, StringFormat='MM.dd.yyy'}" 
+                    HorizontalAlignment="Left" Height="35" Margin="50,287,0,0" VerticalAlignment="Top" Width="300" FontSize="18"/>
 
     </Grid>
 </Window>

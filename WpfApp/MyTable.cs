@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace WpfApp
@@ -120,7 +121,82 @@ namespace WpfApp
                     (delete_click = new RelayCommand(obj =>
                     {
                         DBCon.Delete(SelectedRow);
+                        using (MyTable context = new MyTable())
+                        {
+                            Custmor cus = context.Custmor.Find(currentCustomer.ID);
+                            context.Custmor.Remove(cus);
+                            context.SaveChanges();
+                        }
                     }));
+            }
+        }
+        private RelayCommand update_click;
+        public RelayCommand Update_click
+        {
+            get
+            {
+                return update_click ??
+                    (update_click = new RelayCommand(obj =>
+                    {
+                        Table = null;
+                        Table = DBCon.Grid();
+                        //Table = DBCon.Grid();
+                    }));
+            }
+        }
+        private RelayCommand addCus;
+        public RelayCommand AddCus
+        {
+            get
+            {
+                return addCus ??
+                    (addCus = new RelayCommand(obj =>
+                    {
+                        if (surname != String.Empty && name != String.Empty && days > 0
+                            && fly != null && type != String.Empty)
+                        {
+                            t1 = new MyTable(surname, name, type, fly, days);
+                            try
+                            {
+                                DBCon con = new DBCon();
+                                con.Add(t1);
+                                MessageBox.Show("Customer added");
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                        }
+                        else
+                            MessageBox.Show("Empty line");
+
+                    }));
+            }
+        }
+        private string userName;
+        public string UserName
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this.userName))
+                {
+                    this.userName = "Nothing is Selected";
+                    return this.userName;
+                }
+                else
+                {
+                    MessageBox.Show(userName);
+                    return this.userName;
+                }
+            }
+            set
+            {
+                // Implement with property changed handling for INotifyPropertyChanged
+                //if (!string.Equals(userName, value))
+                //{
+                userName = value;
+                OnPropertyChanged("UserName"); // Method to raise the PropertyChanged event in your BaseViewModel class...
+                //}
             }
         }
         public MyTable()
@@ -440,62 +516,6 @@ namespace WpfApp
                 OnPropertyChanged("Fly_out");
             }
         }
-        private RelayCommand addCus;
-        public RelayCommand AddCus
-        {
-            get
-            {
-                return addCus ??
-                    (addCus = new RelayCommand(obj =>
-                    {
-                        MessageBox.Show("1");
-
-                        if (surname != String.Empty && name != String.Empty && days > 0
-                            && fly != null && type != String.Empty)
-                        {
-                            t1 = new MyTable(surname, name, type, fly, days);
-                            try
-                            {
-                                DBCon con = new DBCon();
-                                con.Add(t1);
-                                MessageBox.Show("Customer added");
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show(ex.ToString());
-                            }
-                        }
-                        else
-                            MessageBox.Show("Empty line");
-
-                    }));
-            }
-        }
-        private string userName;
-        public string UserName
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(this.userName))
-                {
-                    this.userName = "Nothing is Selected";
-                    return this.userName;
-                }
-                else
-                {
-                    MessageBox.Show(userName);
-                    return this.userName;
-                }
-            }
-            set
-            {
-                // Implement with property changed handling for INotifyPropertyChanged
-                //if (!string.Equals(userName, value))
-                //{
-                userName = value;
-                OnPropertyChanged("UserName"); // Method to raise the PropertyChanged event in your BaseViewModel class...
-                //}
-            }
-        }
+       
     }
 }
